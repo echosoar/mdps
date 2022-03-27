@@ -1,0 +1,389 @@
+[
+  {
+    "type": "head",
+    "level": 1,
+    "value": "Mdps",
+    "childs": [
+      {
+        "type": "line",
+        "childs": [
+          {
+            "type": "link",
+            "childs": [
+              {
+                "type": "img",
+                "alt": "npm",
+                "src": "https://img.shields.io/npm/v/mdps.svg?style=flat"
+              }
+            ],
+            "href": "https://www.npmjs.org/package/mdps"
+          },
+          {
+            "type": "text",
+            "value": " "
+          },
+          {
+            "type": "link",
+            "childs": [
+              {
+                "type": "img",
+                "alt": "travis",
+                "src": "https://travis-ci.org/echosoar/mdps.svg?branch=master"
+              }
+            ],
+            "href": "https://travis-ci.org/echosoar/mdps"
+          }
+        ]
+      },
+      {
+        "type": "empty"
+      },
+      {
+        "type": "line",
+        "childs": [
+          {
+            "type": "text",
+            "value": "The full-featured markdown parser, converts Markdown text into JSON objects, which can be used to produce HTML, PDF and other content."
+          }
+        ]
+      },
+      {
+        "type": "empty"
+      },
+      {
+        "type": "hr"
+      },
+      {
+        "type": "head",
+        "level": 3,
+        "value": "Usage",
+        "childs": [
+          {
+            "type": "code",
+            "lang": "shell",
+            "childs": [
+              {
+                "type": "line",
+                "childs": [
+                  {
+                    "type": "text",
+                    "value": "$ npm i mdps --save"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "empty"
+          },
+          {
+            "type": "code",
+            "lang": "javascript",
+            "childs": [
+              {
+                "type": "line",
+                "childs": [
+                  {
+                    "type": "text",
+                    "value": "const Mdps = require('mdps');"
+                  }
+                ]
+              },
+              {
+                "type": "line",
+                "childs": [
+                  {
+                    "type": "text",
+                    "value": "const mdps = new Mdps();"
+                  }
+                ]
+              },
+              {
+                "type": "line",
+                "childs": [
+                  {
+                    "type": "text",
+                    "value": "    mdps.parse(`"
+                  }
+                ]
+              },
+              {
+                "type": "line",
+                "childs": [
+                  {
+                    "type": "text",
+                    "value": "# h1"
+                  }
+                ]
+              },
+              {
+                "type": "line",
+                "childs": [
+                  {
+                    "type": "text",
+                    "value": "[ ] tesk not complete"
+                  }
+                ]
+              },
+              {
+                "type": "line",
+                "childs": [
+                  {
+                    "type": "text",
+                    "value": "[x] tesk complete"
+                  }
+                ]
+              },
+              {
+                "type": "line",
+                "childs": [
+                  {
+                    "type": "text",
+                    "value": "`);"
+                  }
+                ]
+              },
+              {
+                "type": "line",
+                "childs": [
+                  {
+                    "type": "text",
+                    "value": "const result = mdps.getResult();"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "empty"
+          }
+        ]
+      },
+      {
+        "type": "head",
+        "level": 3,
+        "value": "Feature Supported",
+        "childs": [
+          {
+            "type": "task",
+            "level": 0,
+            "childs": [
+              {
+                "type": "item",
+                "complete": true,
+                "childs": [
+                  {
+                    "type": "line",
+                    "childs": [
+                      {
+                        "type": "text",
+                        "value": "一级标题 ~ 六级标题"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "item",
+                "complete": true,
+                "childs": [
+                  {
+                    "type": "line",
+                    "childs": [
+                      {
+                        "type": "text",
+                        "value": "有序列表"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "item",
+                "complete": true,
+                "childs": [
+                  {
+                    "type": "line",
+                    "childs": [
+                      {
+                        "type": "text",
+                        "value": "无序列表"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "item",
+                "complete": true,
+                "childs": [
+                  {
+                    "type": "line",
+                    "childs": [
+                      {
+                        "type": "text",
+                        "value": "引用内容"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "item",
+                "complete": true,
+                "childs": [
+                  {
+                    "type": "line",
+                    "childs": [
+                      {
+                        "type": "text",
+                        "value": "代码段"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "item",
+                "complete": true,
+                "childs": [
+                  {
+                    "type": "line",
+                    "childs": [
+                      {
+                        "type": "text",
+                        "value": "分割线"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "item",
+                "complete": true,
+                "childs": [
+                  {
+                    "type": "line",
+                    "childs": [
+                      {
+                        "type": "text",
+                        "value": "任务列表"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "item",
+                "complete": true,
+                "childs": [
+                  {
+                    "type": "line",
+                    "childs": [
+                      {
+                        "type": "text",
+                        "value": "加粗"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "item",
+                "complete": true,
+                "childs": [
+                  {
+                    "type": "line",
+                    "childs": [
+                      {
+                        "type": "text",
+                        "value": "斜体"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "item",
+                "complete": true,
+                "childs": [
+                  {
+                    "type": "line",
+                    "childs": [
+                      {
+                        "type": "text",
+                        "value": "图片"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "item",
+                "complete": true,
+                "childs": [
+                  {
+                    "type": "line",
+                    "childs": [
+                      {
+                        "type": "text",
+                        "value": "超链接"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "empty"
+          }
+        ]
+      },
+      {
+        "type": "head",
+        "level": 3,
+        "value": "Data after this readme parsed",
+        "childs": [
+          {
+            "type": "code",
+            "lang": "JSON",
+            "childs": [
+              {
+                "type": "line",
+                "childs": [
+                  {
+                    "type": "text",
+                    "value": ""
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "empty"
+          }
+        ]
+      },
+      {
+        "type": "head",
+        "level": 3,
+        "value": "License",
+        "childs": [
+          {
+            "type": "line",
+            "childs": [
+              {
+                "type": "text",
+                "value": "MIT"
+              }
+            ]
+          },
+          {
+            "type": "empty"
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,101 @@
+[
+  {
+    "type": "task",
+    "level": 0,
+    "childs": [
+      {
+        "type": "item",
+        "complete": false,
+        "childs": [
+          {
+            "type": "line",
+            "childs": [
+              {
+                "type": "text",
+                "value": "task1 not complete"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "item",
+        "complete": false,
+        "childs": [
+          {
+            "type": "line",
+            "childs": [
+              {
+                "type": "text",
+                "value": "task2 not complete"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "item",
+        "complete": true,
+        "childs": [
+          {
+            "type": "line",
+            "childs": [
+              {
+                "type": "text",
+                "value": "task3 complete"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "item",
+        "complete": true,
+        "childs": [
+          {
+            "type": "line",
+            "childs": [
+              {
+                "type": "text",
+                "value": "task4 complete"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "item",
+        "complete": true,
+        "childs": [
+          {
+            "type": "line",
+            "childs": [
+              {
+                "type": "text",
+                "value": "task5 complete"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "item",
+        "complete": true,
+        "childs": [
+          {
+            "type": "line",
+            "childs": [
+              {
+                "type": "text",
+                "value": "task6 complete"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "empty"
+  }
+]

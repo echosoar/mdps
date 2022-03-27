@@ -1,0 +1,94 @@
+[
+  {
+    "type": "line",
+    "childs": [
+      {
+        "type": "text",
+        "value": "    as"
+      },
+      {
+        "type": "link",
+        "childs": [
+          {
+            "type": "text",
+            "value": "d"
+          }
+        ],
+        "href": "link"
+      },
+      {
+        "type": "link",
+        "childs": [
+          {
+            "type": "img",
+            "alt": "编组.png",
+            "src": "imgsrc"
+          }
+        ],
+        "href": "123"
+      },
+      {
+        "type": "link",
+        "childs": [
+          {
+            "type": "text",
+            "value": "d"
+          },
+          {
+            "type": "bold",
+            "childs": [
+              {
+                "type": "text",
+                "value": "asd"
+              }
+            ]
+          }
+        ],
+        "href": "link"
+      },
+      {
+        "type": "bold",
+        "childs": [
+          {
+            "type": "text",
+            "value": "as"
+          }
+        ]
+      },
+      {
+        "type": "italic",
+        "childs": [
+          {
+            "type": "bold",
+            "childs": [
+              {
+                "type": "text",
+                "value": "d"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "value": "a"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "sd"
+      },
+      {
+        "type": "delete",
+        "childs": [
+          {
+            "type": "text",
+            "value": "ha"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "empty"
+  }
+]

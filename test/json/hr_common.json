@@ -1,0 +1,29 @@
+[
+  {
+    "type": "hr"
+  },
+  {
+    "type": "hr"
+  },
+  {
+    "type": "line",
+    "childs": [
+      {
+        "type": "text",
+        "value": "  not ---"
+      }
+    ]
+  },
+  {
+    "type": "line",
+    "childs": [
+      {
+        "type": "text",
+        "value": "not ---"
+      }
+    ]
+  },
+  {
+    "type": "empty"
+  }
+]

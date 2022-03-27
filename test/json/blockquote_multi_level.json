@@ -1,0 +1,79 @@
+[
+  {
+    "type": "blockquote",
+    "level": 1,
+    "childs": [
+      {
+        "type": "item",
+        "childs": [
+          {
+            "type": "line",
+            "childs": [
+              {
+                "type": "text",
+                "value": "bq1"
+              }
+            ]
+          },
+          {
+            "type": "blockquote",
+            "level": 2,
+            "childs": [
+              {
+                "type": "item",
+                "childs": [
+                  {
+                    "type": "line",
+                    "childs": [
+                      {
+                        "type": "text",
+                        "value": "bq2"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "blockquote",
+                    "level": 3,
+                    "childs": [
+                      {
+                        "type": "item",
+                        "childs": [
+                          {
+                            "type": "line",
+                            "childs": [
+                              {
+                                "type": "text",
+                                "value": "bq3"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "item",
+        "childs": [
+          {
+            "type": "line",
+            "childs": [
+              {
+                "type": "text",
+                "value": "bq1-item2"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "empty"
+  }
+]

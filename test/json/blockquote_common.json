@@ -1,0 +1,53 @@
+[
+  {
+    "type": "blockquote",
+    "level": 1,
+    "childs": [
+      {
+        "type": "item",
+        "childs": [
+          {
+            "type": "line",
+            "childs": [
+              {
+                "type": "text",
+                "value": "bq1"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "item",
+        "childs": [
+          {
+            "type": "line",
+            "childs": [
+              {
+                "type": "text",
+                "value": "bq2"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "item",
+        "childs": [
+          {
+            "type": "line",
+            "childs": [
+              {
+                "type": "text",
+                "value": "bq3"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "empty"
+  }
+]

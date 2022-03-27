@@ -1,0 +1,43 @@
+[
+  {
+    "type": "head",
+    "level": 1,
+    "value": "h1",
+    "childs": [
+      {
+        "type": "head",
+        "level": 2,
+        "value": "h2",
+        "childs": [
+          {
+            "type": "head",
+            "level": 3,
+            "value": "h3",
+            "childs": [
+              {
+                "type": "head",
+                "level": 4,
+                "value": "h4",
+                "childs": [
+                  {
+                    "type": "head",
+                    "level": 5,
+                    "value": "h5",
+                    "childs": [
+                      {
+                        "type": "head",
+                        "level": 6,
+                        "value": "h6",
+                        "childs": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

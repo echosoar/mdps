@@ -1,0 +1,35 @@
+{
+  "name": "mdps",
+  "version": "0.0.1",
+  "description": "mdps",
+  "main": "./dist/index.js",
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tslint -c tslint.json 'src/**/*.ts' & tsc --build",
+    "test": "jest",
+    "coverage": "jest --coverage",
+    "minify": "uglifyjs --compress --mangle --output index.min.js -- ./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "@types/jest": "^25.1.2",
+    "@types/node": "^13.7.0",
+    "@babel/preset-typescript": "^7.3.3",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.0.2",
+    "tslint": "^5.18.0",
+    "typescript": "^3.5.3",
+    "uglify-js": "^3.6.0"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
+    "testRegex": "/test/.*\\.test\\.ts$"
+  },
+  "dependencies": {},
+  "author": "",
+  "license": "MIT"
+}

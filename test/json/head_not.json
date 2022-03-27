@@ -1,0 +1,32 @@
+[
+  {
+    "type": "line",
+    "childs": [
+      {
+        "type": "text",
+        "value": "####not h4"
+      }
+    ]
+  },
+  {
+    "type": "line",
+    "childs": [
+      {
+        "type": "text",
+        "value": " #not h1"
+      }
+    ]
+  },
+  {
+    "type": "line",
+    "childs": [
+      {
+        "type": "text",
+        "value": "something # is not head"
+      }
+    ]
+  },
+  {
+    "type": "empty"
+  }
+]
