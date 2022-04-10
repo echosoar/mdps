@@ -6,7 +6,7 @@ describe('Line', () => {
   it('mix text link bold itelic and img', () => {
     const mdps = new Mdps();
     mdps.parse(`
-    as[d](link)[![编组.png](imgsrc)](123)[d**asd**](link)**as**_**d**a_sd~~ha~~
+    as[d](link)[![编组.png](imgsrc)](123)[d**asd**](link)**as**_**d**a_sd~~ha~~==xxx==
     `);
     const result = mdps.getResult();
     writeFileSync(resolve(__dirname, './json/line.json'), JSON.stringify(result, null, '  '));
@@ -27,7 +27,8 @@ describe('Line', () => {
       result[0].childs[5].childs[1].type === 'text' &&  // d
       result[0].childs[5].childs[1].value === 'a' &&// a
       result[0].childs[7].type === 'delete' &&  //~~ha~~
-      result[0].childs[7].childs[0].value === 'ha',  // ~~ha~~
+      result[0].childs[7].childs[0].value === 'ha' &&  // ~~ha~~
+      result[0].childs[8].type === 'highLight',  // ==ha==
     ).toBeTruthy();
   });
 });

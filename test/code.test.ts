@@ -22,4 +22,19 @@ describe('Code', () => {
       result[0].childs[2].type === 'line',
     ).toBeTruthy();
   });
+  it('inline', () => {
+    const mdps = new Mdps();
+    mdps.parse(`
+\`test\` abc **b**`);
+    const result = mdps.getResult();
+    writeFileSync(resolve(__dirname, './json/code_inline.json'), JSON.stringify(result, null, '  '));
+    expect(
+      result[0].type === 'line' &&
+      result[0].childs.length === 3 &&
+      result[0].childs[0].type === 'inlineCode' &&
+      result[0].childs[0].value === 'test' &&
+      result[0].childs[1].type === 'text' &&
+      result[0].childs[2].type === 'bold',
+    ).toBeTruthy();
+  });
 });

@@ -1,0 +1,24 @@
+[
+  {
+    "type": "line",
+    "childs": [
+      {
+        "type": "inlineCode",
+        "value": "test"
+      },
+      {
+        "type": "text",
+        "value": " abc "
+      },
+      {
+        "type": "bold",
+        "childs": [
+          {
+            "type": "text",
+            "value": "b"
+          }
+        ]
+      }
+    ]
+  }
+]

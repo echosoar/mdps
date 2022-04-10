@@ -1,0 +1,11 @@
+[
+  {
+    "type": "line",
+    "childs": [
+      {
+        "type": "sup",
+        "value": "th"
+      }
+    ]
+  }
+]

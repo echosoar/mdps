@@ -26,13 +26,17 @@ const result = mdps.getResult();
 - [x] 有序列表
 - [x] 无序列表
 - [x] 引用内容
+- [x] 图片
+- [x] 超链接
 - [x] 代码段
+- [x] 行内代码
 - [x] 分割线
 - [x] 任务列表
 - [x] 加粗
 - [x] 斜体
-- [x] 图片
-- [x] 超链接
+- [x] 删除线
+- [x] 高亮
+- [x] 上标、下标
 
 ### Data after this readme parsed
 ```JSON

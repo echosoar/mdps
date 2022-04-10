@@ -85,6 +85,15 @@
             "value": "ha"
           }
         ]
+      },
+      {
+        "type": "highLight",
+        "childs": [
+          {
+            "type": "text",
+            "value": "xxx"
+          }
+        ]
       }
     ]
   },

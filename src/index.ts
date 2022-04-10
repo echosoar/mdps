@@ -10,6 +10,10 @@ import {
   TaskReg,
   UlReg,
   DelReg,
+  inlineCodeReg,
+  SubReg,
+  SupReg,
+  HighLightReg,
 } from './reg';
 export default class Mdps {
   private innerSplit: string = ':mdps:&:split:';
@@ -117,7 +121,7 @@ export default class Mdps {
       } else if (onlyText) {
         result.push({ type: 'text', value });
       } else {
-        result.push(...this.formatBoldAndItalic(value));
+        result.push(...this.formatInlineStyle(value));
       }
     });
     return result;
@@ -163,22 +167,30 @@ export default class Mdps {
     return newLine;
   }
 
-  private formatBoldAndItalic(line: string, tmp?: any) {
+  private formatInlineStyle(line: string, tmp?: any) {
     tmp = tmp || [];
     let newLine = line;
     const regList = [
-      { type: 'bold', reg: BoldReg, replace: (boldContent) => (boldContent && this.formatBoldAndItalic(boldContent, tmp)) },
-      { type: 'italic', reg: ItalicReg, replace: (itaOne, itaTwo) => (this.formatBoldAndItalic(itaOne || itaTwo, tmp)) },
-      { type: 'delete', reg: DelReg, replace: (delContent) => (delContent && this.formatBoldAndItalic(delContent, tmp)) },
+      { type: 'bold', reg: BoldReg, replace: (boldContent) => (boldContent && this.formatInlineStyle(boldContent, tmp)) },
+      { type: 'italic', reg: ItalicReg, replace: (itaOne, itaTwo) => (this.formatInlineStyle(itaOne || itaTwo, tmp)) },
+      { type: 'delete', reg: DelReg, replace: (delContent) => (delContent && this.formatInlineStyle(delContent, tmp)) },
+      { type: 'highLight', reg: HighLightReg, replace: (high) => (high && this.formatInlineStyle(high, tmp)) },
+      { type: 'inlineCode', reg: inlineCodeReg },
+      { type: 'sub', reg: SubReg },
+      { type: 'sup', reg: SupReg },
     ];
     regList.forEach((regInfo: any) => {
       while (regInfo.reg.test(newLine)) {
         newLine = newLine.replace(regInfo.reg, (_, ...args) => {
-          const childs = (regInfo.replace as any)(...args);
-          if (!childs) {
-            return '';
+          if (regInfo.replace) {
+            const childs = (regInfo.replace as any)(...args);
+            if (!childs) {
+              return '';
+            }
+            tmp.push({ type: regInfo.type, childs });
+          } else {
+            tmp.push({ type: regInfo.type, value: args[0] });
           }
-          tmp.push({ type: regInfo.type, childs });
           return  this.innerSplit + (tmp.length - 1) + this.innerSplit;
         });
       }
