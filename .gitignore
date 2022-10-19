@@ -4,6 +4,7 @@ node_modules
 logs
 .vscode
 dest
+dist
 coverage
 .idea
 package-lock.json

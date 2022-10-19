@@ -3,6 +3,16 @@ import { writeFileSync } from 'fs';
 import { resolve } from 'path';
 
 describe('Line', () => {
+  it('pure number content', () => {
+    const mdps = new Mdps();
+    mdps.parse(`123`);
+    const result = mdps.getResult();
+    expect(
+      result[0].type === 'line' &&
+      result[0].childs[0].type === 'text' && 
+      result[0].childs[0].value === '123'
+    ).toBeTruthy();
+  });
   it('mix text link bold itelic and img', () => {
     const mdps = new Mdps();
     mdps.parse(`

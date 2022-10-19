@@ -17,6 +17,7 @@ import {
 } from './reg';
 export default class Mdps {
   private innerSplit: string = ':mdps:&:split:';
+  private referenceIndexPrefix: string = 'mdps:ref:prefix:';
   private result: any = [];
   private notMatch: boolean = false;
   public parse(mdContent: string) {
@@ -116,8 +117,8 @@ export default class Mdps {
       if (!value) {
         return;
       }
-      if (/^\d+$/.test(value)) {
-        result.push(tmp[value]);
+      if (value.startsWith(this.referenceIndexPrefix)) {
+        result.push(tmp[value.replace(this.referenceIndexPrefix, '')]);
       } else if (onlyText) {
         result.push({ type: 'text', value });
       } else {
@@ -161,7 +162,7 @@ export default class Mdps {
         } else {
           return match;
         }
-        return this.innerSplit + (contentList.length - 1) + this.innerSplit;
+        return this.innerSplit + this.referenceIndexPrefix + (contentList.length - 1) + this.innerSplit;
       });
     }
     return newLine;
@@ -191,7 +192,7 @@ export default class Mdps {
           } else {
             tmp.push({ type: regInfo.type, value: args[0] });
           }
-          return  this.innerSplit + (tmp.length - 1) + this.innerSplit;
+          return  this.innerSplit + this.referenceIndexPrefix + (tmp.length - 1) + this.innerSplit;
         });
       }
     });

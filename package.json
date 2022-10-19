@@ -1,13 +1,13 @@
 {
   "name": "mdps",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "mdps",
   "main": "./dist/index.js",
   "scripts": {
     "dev": "tsc --watch",
     "build": "tslint -c tslint.json 'src/**/*.ts' && NODE_ENV=production webpack --config ./webpack.conf.js",
     "test": "jest",
-    "test:single": "jest ./test/sub-sup.test.ts",
+    "test:single": "jest ./test/line.test.ts",
     "coverage": "jest --coverage",
     "release": "npm run build && npm publish --access=public"
   },
