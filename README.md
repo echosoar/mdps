@@ -37,6 +37,7 @@ const result = mdps.getResult();
 - [x] 删除线
 - [x] 高亮
 - [x] 上标、下标
+- [x] 挖空
 
 ### Data after this readme parsed
 ```JSON
@@ -432,4 +433,4 @@ const result = mdps.getResult();
 ```
 
 ### License
-MIT
+MIT by @echosoar

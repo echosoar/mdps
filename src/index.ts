@@ -14,11 +14,18 @@ import {
   SubReg,
   SupReg,
   HighLightReg,
+  HollowReg,
 } from './reg';
 export default class Mdps {
   private innerSplit: string = ':mdps:&:split:';
   private referenceIndexPrefix: string = 'mdps:ref:prefix:';
   private result: any = [];
+  private info: IMarkdownInfo = {
+    links: {},
+    length: 0,
+    text: '',
+    toc: [],
+  };
   private notMatch: boolean = false;
   public parse(mdContent: string) {
     const allLine = mdContent.split(/\n/);
@@ -104,10 +111,14 @@ export default class Mdps {
     return this.result;
   }
 
+  public getInfo(): IMarkdownInfo {
+    this.info.length = this.info.text.length;
+    return this.info;
+  }
+
   private formatLine(line: string) {
     const tmp = [];
-    const newLine = this.formatImgAndLink(line, tmp);
-    return { type: 'line', childs: this.splitGroupLine(newLine, tmp) };
+    return { type: 'line', childs: this.splitGroupLine(line, tmp) };
   }
 
   // 用来处理包含bold、italic等的一行内容
@@ -151,23 +162,6 @@ export default class Mdps {
     });
   }
 
-  private formatImgAndLink(line: string, contentList) {
-    let newLine = line;
-    while (ImgAndLinkReg.test(newLine)) {
-      newLine = newLine.replace(ImgAndLinkReg, (match, imgTitle, imgSrc, linkTitle, linkHref) => {
-        if (imgTitle || imgSrc) {
-          contentList.push({ type: 'img', alt: imgTitle, src: imgSrc });
-        } else if (linkTitle || linkHref) {
-          contentList.push({ type: 'link', childs: this.splitGroupLine(linkTitle, contentList), href: linkHref });
-        } else {
-          return match;
-        }
-        return this.innerSplit + this.referenceIndexPrefix + (contentList.length - 1) + this.innerSplit;
-      });
-    }
-    return newLine;
-  }
-
   private formatInlineStyle(line: string, tmp?: any) {
     tmp = tmp || [];
     let newLine = line;
@@ -176,19 +170,31 @@ export default class Mdps {
       { type: 'italic', reg: ItalicReg, replace: (itaOne, itaTwo) => (this.formatInlineStyle(itaOne || itaTwo, tmp)) },
       { type: 'delete', reg: DelReg, replace: (delContent) => (delContent && this.formatInlineStyle(delContent, tmp)) },
       { type: 'highLight', reg: HighLightReg, replace: (high) => (high && this.formatInlineStyle(high, tmp)) },
+      { type: 'hollow', reg: HollowReg,  replace: (hollow) => (hollow && this.formatInlineStyle(hollow, tmp)) },
       { type: 'inlineCode', reg: inlineCodeReg },
       { type: 'sub', reg: SubReg },
       { type: 'sup', reg: SupReg },
+      { type: 'imgOrLink', reg: ImgAndLinkReg, replace: (imgTitle, imgSrc, linkTitle, linkHref) => {
+        if (imgTitle || imgSrc) {
+          return { type: 'img', alt: imgTitle, src: imgSrc };
+        } else if (linkTitle || linkHref) {
+          return { type: 'link', childs: this.splitGroupLine(linkTitle, tmp), href: linkHref };
+        }
+      }},
     ];
     regList.forEach((regInfo: any) => {
       while (regInfo.reg.test(newLine)) {
         newLine = newLine.replace(regInfo.reg, (_, ...args) => {
           if (regInfo.replace) {
             const childs = (regInfo.replace as any)(...args);
-            if (!childs) {
-              return '';
+            if (!childs || childs.match) {
+              return childs?.match || '';
             }
-            tmp.push({ type: regInfo.type, childs });
+            if (childs.type) {
+              tmp.push(childs);
+            } else {
+              tmp.push({ type: regInfo.type, childs });
+            }
           } else {
             tmp.push({ type: regInfo.type, value: args[0] });
           }
@@ -247,4 +253,22 @@ export default class Mdps {
   private insertNotMatch(currentLine) {
     this.insertToResult({ type: 'line', childs: [{type: 'text', value: currentLine }]}, this.result);
   }
+}
+
+interface IMarkdownInfo {
+  links: {
+    [link: string]: {
+      title?: string;
+      link: string;
+    };
+  };
+  text: string;
+  length: number;
+  toc: IMarkdownToc[];
+}
+
+interface IMarkdownToc {
+  title: string;
+  level: number;
+  childs: IMarkdownToc[];
 }

@@ -41,4 +41,36 @@ describe('Line', () => {
       result[0].childs[8].type === 'highLight',  // ==ha==
     ).toBeTruthy();
   });
+  it('mix link and bold', () => {
+    const mdps = new Mdps();
+    mdps.parse(`
+    **[userscloud](https://userscloud.com/)**
+    `);
+    const result = mdps.getResult();
+    expect(
+      result[0].type === 'line' &&
+      result[0].childs[1].type === 'bold' &&  // **xxx**
+      result[0].childs[1].childs[0].type === 'link' &&  // [userscloud](https://userscloud.com/)
+      result[0].childs[1].childs[0].href === 'https://userscloud.com/' &&  // [userscloud](https://userscloud.com/)
+      result[0].childs[1].childs[0].childs[0].type === 'text'  &&  // userscloud
+      result[0].childs[1].childs[0].childs[0].value === 'userscloud'
+    ).toBeTruthy();
+  })
+  it('mix hollow and bold', () => {
+    const mdps = new Mdps();
+    mdps.parse(`
+    **{{213}}**{{\`code\`}}
+    `);
+    const result = mdps.getResult();
+    expect(
+      result[0].type === 'line' &&
+      result[0].childs[1].type === 'bold' &&  // **xxx**
+      result[0].childs[1].childs[0].type === 'hollow' &&  // {{213}}
+      result[0].childs[1].childs[0].childs[0].type === 'text'  &&  // 213
+      result[0].childs[1].childs[0].childs[0].value === '213' && 
+      result[0].childs[2].type === 'hollow' &&  // {{xxx}}
+      result[0].childs[2].childs[0].type === 'inlineCode' &&  // `code`
+      result[0].childs[2].childs[0].value === 'code'  // code
+    ).toBeTruthy();
+  })
 });
