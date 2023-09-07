@@ -16,7 +16,7 @@ describe('Line', () => {
   it('mix text link bold itelic and img', () => {
     const mdps = new Mdps();
     mdps.parse(`
-    as[d](link)[![编组.png](imgsrc)](123)[d**asd**](link)**as**_**d**a_sd~~ha~~==xxx==
+    as[d](link)[![编组_123_abc.png](im_gs_rc)](123)[d**asd**](link)**as**_**d**a_sd~~ha~~==xxx==
     `);
     const result = mdps.getResult();
     writeFileSync(resolve(__dirname, './json/line.json'), JSON.stringify(result, null, '  '));
@@ -25,6 +25,8 @@ describe('Line', () => {
       result[0].childs[1].type === 'link' &&  // [d](link)
       result[0].childs[2].type === 'link' &&  // [![编组.png](imgsrc)](123)
       result[0].childs[2].childs[0].type === 'img' &&  // ![编组.png](imgsrc)
+      result[0].childs[2].childs[0].alt === '编组_123_abc.png' &&  // ![编组.png](imgsrc)
+      result[0].childs[2].childs[0].src === 'im_gs_rc' &&  // ![编组.png](imgsrc)
       result[0].childs[3].type === 'link' &&  // [d**asd**](link)
       result[0].childs[3].childs[0].type === 'text' &&  // dß
       result[0].childs[3].childs[0].value === 'd' &&  // d
