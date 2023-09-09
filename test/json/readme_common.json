@@ -60,6 +60,7 @@
         "childs": [
           {
             "type": "code",
+            "multiLines": true,
             "lang": "shell",
             "childs": [
               {
@@ -78,6 +79,7 @@
           },
           {
             "type": "code",
+            "multiLines": true,
             "lang": "javascript",
             "childs": [
               {
@@ -347,6 +349,7 @@
         "childs": [
           {
             "type": "code",
+            "multiLines": true,
             "lang": "JSON",
             "childs": [
               {

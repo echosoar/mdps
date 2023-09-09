@@ -1,28 +1,17 @@
 [
   {
-    "type": "line",
+    "type": "enc",
+    "multiLines": true,
+    "title": "title",
     "childs": [
       {
-        "type": "text",
-        "value": ">enc:title"
-      }
-    ]
-  },
-  {
-    "type": "line",
-    "childs": [
-      {
-        "type": "text",
-        "value": "1111"
-      }
-    ]
-  },
-  {
-    "type": "line",
-    "childs": [
-      {
-        "type": "text",
-        "value": "enc<"
+        "type": "line",
+        "childs": [
+          {
+            "type": "text",
+            "value": "1111"
+          }
+        ]
       }
     ]
   },
@@ -30,29 +19,18 @@
     "type": "empty"
   },
   {
-    "type": "line",
+    "type": "enc",
+    "multiLines": true,
+    "title": "title2",
     "childs": [
       {
-        "type": "text",
-        "value": ">enc:title2"
-      }
-    ]
-  },
-  {
-    "type": "line",
-    "childs": [
-      {
-        "type": "text",
-        "value": "2222"
-      }
-    ]
-  },
-  {
-    "type": "line",
-    "childs": [
-      {
-        "type": "text",
-        "value": "enc<"
+        "type": "line",
+        "childs": [
+          {
+            "type": "text",
+            "value": "2222"
+          }
+        ]
       }
     ]
   },

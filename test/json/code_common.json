@@ -1,6 +1,7 @@
 [
   {
     "type": "code",
+    "multiLines": true,
     "lang": "ts",
     "childs": [
       {
