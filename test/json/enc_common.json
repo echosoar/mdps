@@ -1,33 +1,34 @@
 [
   {
-    "type": "code",
+    "type": "enc",
     "multiLines": true,
-    "lang": "ts",
+    "title": "title",
     "childs": [
       {
         "type": "line",
         "childs": [
           {
             "type": "text",
-            "value": "### not head"
+            "value": "1111"
           }
         ]
-      },
+      }
+    ]
+  },
+  {
+    "type": "empty"
+  },
+  {
+    "type": "enc",
+    "multiLines": true,
+    "title": "title2",
+    "childs": [
       {
         "type": "line",
         "childs": [
           {
             "type": "text",
-            "value": "+ not ol"
-          }
-        ]
-      },
-      {
-        "type": "line",
-        "childs": [
-          {
-            "type": "text",
-            "value": "+ not ol2"
+            "value": "2222"
           }
         ]
       }

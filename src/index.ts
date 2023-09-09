@@ -1,7 +1,7 @@
+import { IMarkdownInfo, Item, ItemType } from './interface';
 import {
   BlockquoteReg,
   BoldReg,
-  CodeReg,
   HeadReg,
   HrReg,
   ImgAndLinkReg,
@@ -15,6 +15,7 @@ import {
   SupReg,
   HighLightReg,
   HollowReg,
+  multiLineReg,
 } from './reg';
 export default class Mdps {
   private innerSplit: string = ':mdps:&:split:';
@@ -30,18 +31,23 @@ export default class Mdps {
   public parse(mdContent: string) {
     const allLine = mdContent.split(/\n/);
     let execInfo = null;
+    lineCycle:
     while (allLine.length) {
       const currentLine = allLine.shift();
-      // code
-      execInfo = CodeReg.exec(currentLine);
-      if (execInfo) {
-        if (!this.notMatch) {
-          this.notMatch = true;
-          this.insertToResult({ type: 'code', lang: execInfo[1], childs: []});
-        } else {
-          this.notMatch = false;
+      // multi line: code、enc
+      for (const multilineRegInfo of multiLineReg) {
+        const startReg = multilineRegInfo.start;
+        const endReg = multilineRegInfo.end || startReg;
+        execInfo = (!this.notMatch ? startReg : endReg).exec(currentLine);
+        if (execInfo) {
+          if (!this.notMatch) {
+            this.notMatch = true;
+            this.insertToResult(multilineRegInfo.getItem(execInfo));
+          } else {
+            this.notMatch = false;
+          }
+          continue lineCycle;
         }
-        continue;
       }
 
       if (this.notMatch) {
@@ -51,20 +57,20 @@ export default class Mdps {
 
       // empty line
       if (/^\s*$/.test(currentLine)) {
-        this.insertToResult({ type: 'empty' });
+        this.insertToResult({ type: ItemType.Empty });
         continue;
       }
 
       // hr
       if (HrReg.test(currentLine)) {
-        this.insertToResult({ type: 'hr' });
+        this.insertToResult({ type: ItemType.Hr });
         continue;
       }
 
       // head1 to head6
       execInfo = HeadReg.exec(currentLine);
       if (execInfo) {
-        this.insertToResult({ type: 'head', level: execInfo[1].length, value: execInfo[2] });
+        this.insertToResult({ type: ItemType.Head, level: execInfo[1].length, value: execInfo[2] });
         continue;
       }
 
@@ -78,14 +84,14 @@ export default class Mdps {
       // ul
       execInfo = UlReg.exec(currentLine);
       if (execInfo) {
-        this.formatList('ul', execInfo);
+        this.formatList(ItemType.UnOrderList, execInfo);
         continue;
       }
 
       // ol
       execInfo = OlReg.exec(currentLine);
       if (execInfo) {
-        this.formatList('ol', execInfo);
+        this.formatList(ItemType.OrderList, execInfo);
         continue;
       }
 
@@ -93,10 +99,10 @@ export default class Mdps {
       execInfo = BlockquoteReg.exec(currentLine);
       if (execInfo) {
         this.insertToResult({
-          type: 'blockquote',
+          type: ItemType.Blockquote,
           level: execInfo[1].length,
           childs: [{
-            type: 'item',
+            type: ItemType.Item,
             childs: [this.formatLine(execInfo[2])],
           }],
         });
@@ -116,9 +122,9 @@ export default class Mdps {
     return this.info;
   }
 
-  private formatLine(line: string) {
+  private formatLine(line: string): Item {
     const tmp = [];
-    return { type: 'line', childs: this.splitGroupLine(line, tmp) };
+    return { type: ItemType.Line, childs: this.splitGroupLine(line, tmp) };
   }
 
   // 用来处理包含bold、italic等的一行内容
@@ -139,23 +145,23 @@ export default class Mdps {
     return result;
   }
 
-  private formatList(type, listInfo) {
+  private formatList(type: ItemType.OrderList | ItemType.UnOrderList, listInfo: string[]) {
     this.insertToResult({
       type,
       level: listInfo[1].length,
       childs: [{
-        type: 'item',
+        type: ItemType.Item,
         childs: [this.formatLine(listInfo[2])],
       }],
     });
   }
 
-  private formatTask(taskInfo) {
+  private formatTask(taskInfo: string[]) {
     this.insertToResult({
-      type: 'task',
+      type: ItemType.Task,
       level: taskInfo[1].length,
       childs: [{
-        type: 'item',
+        type: ItemType.Item,
         complete: !!(taskInfo[2] || '').replace(/\s/g, ''),
         childs: [this.formatLine(taskInfo[3])],
       }],
@@ -166,6 +172,13 @@ export default class Mdps {
     tmp = tmp || [];
     let newLine = line;
     const regList = [
+      { type: 'imgOrLink', reg: ImgAndLinkReg, replace: (imgTitle, imgSrc, linkTitle, linkHref) => {
+        if (imgTitle || imgSrc) {
+          return { type: 'img', alt: imgTitle, src: imgSrc };
+        } else if (linkTitle || linkHref) {
+          return { type: 'link', childs: this.splitGroupLine(linkTitle, tmp), href: linkHref };
+        }
+      }},
       { type: 'bold', reg: BoldReg, replace: (boldContent) => (boldContent && this.formatInlineStyle(boldContent, tmp)) },
       { type: 'italic', reg: ItalicReg, replace: (itaOne, itaTwo) => (this.formatInlineStyle(itaOne || itaTwo, tmp)) },
       { type: 'delete', reg: DelReg, replace: (delContent) => (delContent && this.formatInlineStyle(delContent, tmp)) },
@@ -174,13 +187,6 @@ export default class Mdps {
       { type: 'inlineCode', reg: inlineCodeReg },
       { type: 'sub', reg: SubReg },
       { type: 'sup', reg: SupReg },
-      { type: 'imgOrLink', reg: ImgAndLinkReg, replace: (imgTitle, imgSrc, linkTitle, linkHref) => {
-        if (imgTitle || imgSrc) {
-          return { type: 'img', alt: imgTitle, src: imgSrc };
-        } else if (linkTitle || linkHref) {
-          return { type: 'link', childs: this.splitGroupLine(linkTitle, tmp), href: linkHref };
-        }
-      }},
     ];
     regList.forEach((regInfo: any) => {
       while (regInfo.reg.test(newLine)) {
@@ -205,9 +211,9 @@ export default class Mdps {
     return this.splitGroupLine(newLine, tmp, true);
   }
 
-  private insertToResult(item, result?) {
+  private insertToResult(item: Item, result?: Item[]) {
     result = result || this.result;
-    const pre = result && result[result.length - 1];
+    const pre: Item = result && result[result.length - 1];
     if (pre && pre.type === 'head') {
       if (item.type === 'head' && pre.level >= item.level) {
         result.push(item);
@@ -219,11 +225,11 @@ export default class Mdps {
       }
       return;
     }
-    if (pre && pre.type === 'code' && this.notMatch) {
+    if (pre && pre.multiLines && this.notMatch) {
       this.insertToResult(item, pre.childs);
       return;
     }
-    if (item.type === 'empty' && result.length === 0) {
+    if (item.type === ItemType.Empty && result.length === 0) {
       return;
     }
 
@@ -250,25 +256,7 @@ export default class Mdps {
     result.push(item);
   }
 
-  private insertNotMatch(currentLine) {
-    this.insertToResult({ type: 'line', childs: [{type: 'text', value: currentLine }]}, this.result);
+  private insertNotMatch(currentLine: string) {
+    this.insertToResult({ type: ItemType.Line, childs: [{type: ItemType.Text, value: currentLine }]}, this.result);
   }
-}
-
-interface IMarkdownInfo {
-  links: {
-    [link: string]: {
-      title?: string;
-      link: string;
-    };
-  };
-  text: string;
-  length: number;
-  toc: IMarkdownToc[];
-}
-
-interface IMarkdownToc {
-  title: string;
-  level: number;
-  childs: IMarkdownToc[];
 }

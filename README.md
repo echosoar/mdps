@@ -38,6 +38,7 @@ const result = mdps.getResult();
 - [x] 高亮
 - [x] 上标、下标
 - [x] 挖空
+- [x] 加密文本
 
 ### Data after this readme parsed
 ```JSON
