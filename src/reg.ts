@@ -15,6 +15,8 @@ export const DelReg = /~~([^~].*?)~~/g;
 export const SubReg = /~([^~]+)~/g;
 export const SupReg = /\^([^\^]+)\^/g;
 export const HighLightReg = /==([^=]+)==/g;
+export const TableReg = /^\|(.+)\|$/;
+export const TableSeparatorReg = /^\|(\s*:?-+:?\s*\|)+$/;
 
 export const multiLineReg = [
     {

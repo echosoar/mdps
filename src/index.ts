@@ -16,6 +16,8 @@ import {
   HighLightReg,
   HollowReg,
   multiLineReg,
+  TableReg,
+  TableSeparatorReg,
 } from './reg';
 export default class Mdps {
   private innerSplit: string = ':mdps:&:split:';
@@ -109,6 +111,16 @@ export default class Mdps {
         continue;
       }
 
+      // table
+      if (TableReg.test(currentLine)) {
+        const nextLine = allLine[0];
+        if (nextLine && TableSeparatorReg.test(nextLine)) {
+          allLine.shift(); // consume separator line
+          this.formatTable(currentLine, nextLine, allLine);
+          continue;
+        }
+      }
+
       this.insertToResult(this.formatLine(currentLine));
     }
   }
@@ -166,6 +178,58 @@ export default class Mdps {
         childs: [this.formatLine(taskInfo[3])],
       }],
     });
+  }
+
+  private formatTable(headerLine: string, separatorLine: string, allLine: string[]) {
+    // Parse header cells
+    const headerCells = headerLine.split('|').filter((cell) => cell.trim()).map((cell) => cell.trim());
+
+    // Parse alignment from separator line
+    const alignments = separatorLine.split('|').filter((cell) => cell.trim()).map((cell) => {
+      const trimmed = cell.trim();
+      const hasLeft = trimmed.startsWith(':');
+      const hasRight = trimmed.endsWith(':');
+      if (hasLeft && hasRight) {
+        return 'center' as 'center';
+      } else if (hasRight) {
+        return 'right' as 'right';
+      } else {
+        return 'left' as 'left';
+      }
+    });
+
+    // Create table head
+    const tableHead = headerCells.map((cell, index) => ({
+      type: ItemType.Text,
+      value: cell,
+      align: alignments[index] || 'left',
+    })) as any;
+
+    // Parse table rows
+    const childs: any[] = [];
+    while (allLine.length && TableReg.test(allLine[0])) {
+      const rowLine = allLine.shift();
+      const cells = rowLine.split('|').filter((cell) => cell.trim()).map((cell) => cell.trim());
+
+      const tableItems = cells.map((cell) => ({
+        type: ItemType.TableItem,
+        childs: [{
+          type: ItemType.Text,
+          value: cell,
+        }],
+      }));
+
+      childs.push({
+        type: ItemType.TableLine,
+        childs: tableItems,
+      });
+    }
+
+    this.insertToResult({
+      type: ItemType.Table,
+      tableHead,
+      childs,
+    } as any);
   }
 
   private formatInlineStyle(line: string, tmp?: any) {

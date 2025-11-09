@@ -1,0 +1,91 @@
+[
+  {
+    "type": "table",
+    "tableHead": [
+      {
+        "type": "text",
+        "value": "左对齐",
+        "align": "left"
+      },
+      {
+        "type": "text",
+        "value": "右对齐",
+        "align": "right"
+      },
+      {
+        "type": "text",
+        "value": "居中对齐",
+        "align": "center"
+      }
+    ],
+    "childs": [
+      {
+        "type": "tableLine",
+        "childs": [
+          {
+            "type": "tableItem",
+            "childs": [
+              {
+                "type": "text",
+                "value": "单元格"
+              }
+            ]
+          },
+          {
+            "type": "tableItem",
+            "childs": [
+              {
+                "type": "text",
+                "value": "单元格"
+              }
+            ]
+          },
+          {
+            "type": "tableItem",
+            "childs": [
+              {
+                "type": "text",
+                "value": "单元格"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "tableLine",
+        "childs": [
+          {
+            "type": "tableItem",
+            "childs": [
+              {
+                "type": "text",
+                "value": "单元格"
+              }
+            ]
+          },
+          {
+            "type": "tableItem",
+            "childs": [
+              {
+                "type": "text",
+                "value": "单元格"
+              }
+            ]
+          },
+          {
+            "type": "tableItem",
+            "childs": [
+              {
+                "type": "text",
+                "value": "单元格"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "empty"
+  }
+]

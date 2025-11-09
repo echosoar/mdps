@@ -1,0 +1,114 @@
+[
+  {
+    "type": "table",
+    "tableHead": [
+      {
+        "type": "text",
+        "value": "Left",
+        "align": "left"
+      },
+      {
+        "type": "text",
+        "value": "Right",
+        "align": "right"
+      },
+      {
+        "type": "text",
+        "value": "Center",
+        "align": "center"
+      },
+      {
+        "type": "text",
+        "value": "Default",
+        "align": "left"
+      }
+    ],
+    "childs": [
+      {
+        "type": "tableLine",
+        "childs": [
+          {
+            "type": "tableItem",
+            "childs": [
+              {
+                "type": "text",
+                "value": "L1"
+              }
+            ]
+          },
+          {
+            "type": "tableItem",
+            "childs": [
+              {
+                "type": "text",
+                "value": "R1"
+              }
+            ]
+          },
+          {
+            "type": "tableItem",
+            "childs": [
+              {
+                "type": "text",
+                "value": "C1"
+              }
+            ]
+          },
+          {
+            "type": "tableItem",
+            "childs": [
+              {
+                "type": "text",
+                "value": "D1"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "tableLine",
+        "childs": [
+          {
+            "type": "tableItem",
+            "childs": [
+              {
+                "type": "text",
+                "value": "L2"
+              }
+            ]
+          },
+          {
+            "type": "tableItem",
+            "childs": [
+              {
+                "type": "text",
+                "value": "R2"
+              }
+            ]
+          },
+          {
+            "type": "tableItem",
+            "childs": [
+              {
+                "type": "text",
+                "value": "C2"
+              }
+            ]
+          },
+          {
+            "type": "tableItem",
+            "childs": [
+              {
+                "type": "text",
+                "value": "D2"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "empty"
+  }
+]

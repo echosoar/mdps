@@ -1,4 +1,4 @@
-export type Item = IBlockquoteItem | ICodeItem | IEmptyItem | IEncType | IHeadItem | IHrItem | IItem | ILineItem | IListItem | ITask | ITaskItem | ITextItem;
+export type Item = IBlockquoteItem | ICodeItem | IEmptyItem | IEncType | IHeadItem | IHrItem | IItem | ILineItem | IListItem | ITask | ITaskItem | ITextItem | ITableItem | ITableHeadItem | ITableLineItem | ITableCellItem;
 
 export interface IBaseItem {
     type: ItemType;
@@ -61,6 +61,25 @@ export  interface ITextItem extends IBaseItem {
     value: string;
 }
 
+export  interface ITableItem extends IBaseItem {
+    type: ItemType.Table;
+    tableHead?: ITableHeadItem[];
+}
+
+export  interface ITableHeadItem extends IBaseItem {
+    type: ItemType.TableHead;
+    align?: 'left' | 'right' | 'center';
+    value?: string;
+}
+
+export  interface ITableLineItem extends IBaseItem {
+    type: ItemType.TableLine;
+}
+
+export  interface ITableCellItem extends IBaseItem {
+    type: ItemType.TableItem;
+}
+
 export enum ItemType {
     Blockquote = 'blockquote',
     Code = 'code',
@@ -74,6 +93,10 @@ export enum ItemType {
     Task = 'task',
     Text = 'text',
     UnOrderList = 'ul',
+    Table = 'table',
+    TableHead = 'tableHead',
+    TableLine = 'tableLine',
+    TableItem = 'tableItem',
 }
 
 export interface IMarkdownInfo {

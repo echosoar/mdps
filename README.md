@@ -31,6 +31,7 @@ const result = mdps.getResult();
 - [x] 代码段
 - [x] 行内代码
 - [x] 分割线
+- [x] 表格
 - [x] 任务列表
 - [x] 加粗
 - [x] 斜体
