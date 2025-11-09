@@ -1,0 +1,45 @@
+[
+  {
+    "type": "table",
+    "tableHead": [
+      {
+        "type": "text",
+        "value": "Header 1",
+        "align": "left"
+      },
+      {
+        "type": "text",
+        "value": "Header 2",
+        "align": "left"
+      }
+    ],
+    "childs": [
+      {
+        "type": "tableLine",
+        "childs": [
+          {
+            "type": "tableItem",
+            "childs": [
+              {
+                "type": "text",
+                "value": "Cell 1"
+              }
+            ]
+          },
+          {
+            "type": "tableItem",
+            "childs": [
+              {
+                "type": "text",
+                "value": "Cell 2"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "empty"
+  }
+]
