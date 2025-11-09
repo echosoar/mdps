@@ -13,7 +13,7 @@ describe('Table', () => {
     `);
     const result = mdps.getResult();
     writeFileSync(resolve(__dirname, './json/table_common.json'), JSON.stringify(result, null, '  '));
-    
+
     expect(result[0].type).toBe('table');
     expect(result[0].tableHead).toBeDefined();
     expect(result[0].tableHead.length).toBe(3);
@@ -39,7 +39,7 @@ describe('Table', () => {
     `);
     const result = mdps.getResult();
     writeFileSync(resolve(__dirname, './json/table_alignment.json'), JSON.stringify(result, null, '  '));
-    
+
     expect(result[0].type).toBe('table');
     expect(result[0].tableHead[0].align).toBe('left');
     expect(result[0].tableHead[1].align).toBe('right');
@@ -57,10 +57,39 @@ describe('Table', () => {
     `);
     const result = mdps.getResult();
     writeFileSync(resolve(__dirname, './json/table_simple.json'), JSON.stringify(result, null, '  '));
-    
+
     expect(result[0].type).toBe('table');
     expect(result[0].tableHead.length).toBe(2);
     expect(result[0].childs.length).toBe(1);
     expect(result[0].childs[0].childs.length).toBe(2);
+  });
+
+  it('table followed by other content', () => {
+    const mdps = new Mdps();
+    mdps.parse(`
+| Header |
+| --- |
+| Cell |
+
+Some text after table
+    `);
+    const result = mdps.getResult();
+
+    expect(result[0].type).toBe('table');
+    expect(result[1].type).toBe('empty');
+    expect(result[2].type).toBe('line');
+  });
+
+  it('not a table - missing separator', () => {
+    const mdps = new Mdps();
+    mdps.parse(`
+| This is not a table |
+| Because no separator |
+    `);
+    const result = mdps.getResult();
+
+    // Should be treated as regular lines, not a table
+    expect(result[0].type).toBe('line');
+    expect(result[1].type).toBe('line');
   });
 });
