@@ -1,4 +1,4 @@
-export type Item = IBlockquoteItem | ICodeItem | IEmptyItem | IEncType | IHeadItem | IHrItem | IItem | ILineItem | IListItem | ITask | ITaskItem | ITextItem | ITableItem | ITableHeaderItem | ITableLineItem | ITableCellItem;
+export type Item = IBlockquoteItem | ICodeItem | IEmptyItem | IEncType | IHeadItem | IHrItem | IItem | ILineItem | IListItem | ITask | ITaskItem | ITextItem | ITableItem | ITableHeadItem | ITableLineItem | ITableCellItem;
 
 export interface IBaseItem {
     type: ItemType;
@@ -63,13 +63,13 @@ export  interface ITextItem extends IBaseItem {
 
 export  interface ITableItem extends IBaseItem {
     type: ItemType.Table;
-    // headers is always empty; header cells are represented as tableHeader nodes in childs
-    headers: any[];
+    tableHead?: ITableHeadItem[];
 }
 
-export  interface ITableHeaderItem extends IBaseItem {
-    type: ItemType.TableHeader;
+export  interface ITableHeadItem extends IBaseItem {
+    type: ItemType.TableHead;
     align?: 'left' | 'right' | 'center';
+    value?: string;
 }
 
 export  interface ITableLineItem extends IBaseItem {
@@ -77,7 +77,7 @@ export  interface ITableLineItem extends IBaseItem {
 }
 
 export  interface ITableCellItem extends IBaseItem {
-    type: ItemType.TableCell;
+    type: ItemType.TableItem;
 }
 
 export enum ItemType {
@@ -94,9 +94,9 @@ export enum ItemType {
     Text = 'text',
     UnOrderList = 'ul',
     Table = 'table',
-    TableHeader = 'tableHeader',
+    TableHead = 'tableHead',
     TableLine = 'tableLine',
-    TableCell = 'tableCell',
+    TableItem = 'tableItem',
 }
 
 export interface IMarkdownInfo {

@@ -198,21 +198,25 @@ export default class Mdps {
       }
     });
 
-    // Create tableHeader nodes (one per column)
-    const childs: any[] = headerCells.map((cell, index) => ({
-      type: ItemType.TableHeader,
+    // Create table head
+    const tableHead = headerCells.map((cell, index) => ({
+      type: ItemType.Text,
+      value: cell,
       align: alignments[index] || 'left',
-      childs: [{ type: ItemType.Text, value: cell }],
-    }));
+    })) as any;
 
-    // Parse table rows and append as tableLine nodes
+    // Parse table rows
+    const childs: any[] = [];
     while (allLine.length && TableReg.test(allLine[0])) {
       const rowLine = allLine.shift();
       const cells = rowLine.split('|').filter((cell) => cell.trim()).map((cell) => cell.trim());
 
       const tableItems = cells.map((cell) => ({
-        type: ItemType.TableCell,
-        childs: this.formatLine(cell).childs,
+        type: ItemType.TableItem,
+        childs: [{
+          type: ItemType.Text,
+          value: cell,
+        }],
       }));
 
       childs.push({
@@ -223,8 +227,7 @@ export default class Mdps {
 
     this.insertToResult({
       type: ItemType.Table,
-      // headers is kept as an empty array; header cells are tableHeader nodes in childs
-      headers: [],
+      tableHead,
       childs,
     } as any);
   }
