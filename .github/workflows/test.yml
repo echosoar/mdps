@@ -1,0 +1,36 @@
+name: Unit Tests
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  # The owner must approve this environment before tests run.
+  # Create a "test-approval" environment in repo Settings → Environments
+  # and add the repo owner as a required reviewer.
+  approve:
+    name: Waiting for owner approval
+    runs-on: ubuntu-latest
+    environment: test-approval
+    steps:
+      - name: Approved
+        run: echo "Approved by owner, proceeding to run tests."
+
+  test:
+    name: Run unit tests
+    needs: approve
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
