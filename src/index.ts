@@ -5,6 +5,7 @@ import {
   HeadReg,
   HrReg,
   ImgAndLinkReg,
+  InlineHtmlReg,
   ItalicReg,
   OlReg,
   TaskReg,
@@ -236,6 +237,7 @@ export default class Mdps {
     tmp = tmp || [];
     let newLine = line;
     const regList = [
+      { type: 'html', reg: InlineHtmlReg },
       { type: 'imgOrLink', reg: ImgAndLinkReg, replace: (imgTitle, imgSrc, linkTitle, linkHref) => {
         if (imgTitle || imgSrc) {
           return { type: 'img', alt: imgTitle, src: imgSrc };

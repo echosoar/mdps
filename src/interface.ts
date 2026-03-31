@@ -1,4 +1,4 @@
-export type Item = IBlockquoteItem | ICodeItem | IEmptyItem | IEncType | IHeadItem | IHrItem | IItem | ILineItem | IListItem | ITask | ITaskItem | ITextItem | ITableItem | ITableHeadItem | ITableLineItem | ITableCellItem;
+export type Item = IBlockquoteItem | ICodeItem | IEmptyItem | IEncType | IHeadItem | IHrItem | IInlineHtmlItem | IItem | ILineItem | IListItem | ITask | ITaskItem | ITextItem | ITableItem | ITableHeadItem | ITableLineItem | ITableCellItem;
 
 export interface IBaseItem {
     type: ItemType;
@@ -33,6 +33,11 @@ export  interface IHeadItem extends IBaseItem {
 
 export  interface IHrItem extends IBaseItem {
     type: ItemType.Hr;
+}
+
+export  interface IInlineHtmlItem extends IBaseItem {
+    type: ItemType.InlineHtml;
+    value: string;
 }
 
 export  interface IItem extends IBaseItem {
@@ -87,6 +92,7 @@ export enum ItemType {
     Enc = 'enc',
     Head = 'head',
     Hr = 'hr',
+    InlineHtml = 'html',
     Item = 'item',
     Line = 'line',
     OrderList = 'ol',

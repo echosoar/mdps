@@ -17,6 +17,7 @@ export const SupReg = /\^([^\^]+)\^/g;
 export const HighLightReg = /==([^=]+)==/g;
 export const TableReg = /^\|(.+)\|$/;
 export const TableSeparatorReg = /^\|(\s*:?-+:?\s*\|)+$/;
+export const InlineHtmlReg = /(<([a-zA-Z][a-zA-Z0-9]*)(?:\s[^>]*)?>([^<]*)<\/\2>|<[a-zA-Z][a-zA-Z0-9]*(?:\s[^>]*)?\s*\/>)/g;
 
 export const multiLineReg = [
     {
