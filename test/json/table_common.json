@@ -1,43 +1,29 @@
 [
   {
     "type": "table",
-    "headers": [],
+    "tableHead": [
+      {
+        "type": "text",
+        "value": "左对齐",
+        "align": "left"
+      },
+      {
+        "type": "text",
+        "value": "右对齐",
+        "align": "right"
+      },
+      {
+        "type": "text",
+        "value": "居中对齐",
+        "align": "center"
+      }
+    ],
     "childs": [
       {
-        "type": "tableHeader",
-        "align": "left",
-        "childs": [
-          {
-            "type": "text",
-            "value": "左对齐"
-          }
-        ]
-      },
-      {
-        "type": "tableHeader",
-        "align": "right",
-        "childs": [
-          {
-            "type": "text",
-            "value": "右对齐"
-          }
-        ]
-      },
-      {
-        "type": "tableHeader",
-        "align": "center",
-        "childs": [
-          {
-            "type": "text",
-            "value": "居中对齐"
-          }
-        ]
-      },
-      {
         "type": "tableLine",
         "childs": [
           {
-            "type": "tableCell",
+            "type": "tableItem",
             "childs": [
               {
                 "type": "text",
@@ -46,7 +32,7 @@
             ]
           },
           {
-            "type": "tableCell",
+            "type": "tableItem",
             "childs": [
               {
                 "type": "text",
@@ -55,7 +41,7 @@
             ]
           },
           {
-            "type": "tableCell",
+            "type": "tableItem",
             "childs": [
               {
                 "type": "text",
@@ -69,7 +55,7 @@
         "type": "tableLine",
         "childs": [
           {
-            "type": "tableCell",
+            "type": "tableItem",
             "childs": [
               {
                 "type": "text",
@@ -78,7 +64,7 @@
             ]
           },
           {
-            "type": "tableCell",
+            "type": "tableItem",
             "childs": [
               {
                 "type": "text",
@@ -87,7 +73,7 @@
             ]
           },
           {
-            "type": "tableCell",
+            "type": "tableItem",
             "childs": [
               {
                 "type": "text",

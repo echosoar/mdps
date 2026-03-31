@@ -1,53 +1,34 @@
 [
   {
     "type": "table",
-    "headers": [],
+    "tableHead": [
+      {
+        "type": "text",
+        "value": "Left",
+        "align": "left"
+      },
+      {
+        "type": "text",
+        "value": "Right",
+        "align": "right"
+      },
+      {
+        "type": "text",
+        "value": "Center",
+        "align": "center"
+      },
+      {
+        "type": "text",
+        "value": "Default",
+        "align": "left"
+      }
+    ],
     "childs": [
-      {
-        "type": "tableHeader",
-        "align": "left",
-        "childs": [
-          {
-            "type": "text",
-            "value": "Left"
-          }
-        ]
-      },
-      {
-        "type": "tableHeader",
-        "align": "right",
-        "childs": [
-          {
-            "type": "text",
-            "value": "Right"
-          }
-        ]
-      },
-      {
-        "type": "tableHeader",
-        "align": "center",
-        "childs": [
-          {
-            "type": "text",
-            "value": "Center"
-          }
-        ]
-      },
-      {
-        "type": "tableHeader",
-        "align": "left",
-        "childs": [
-          {
-            "type": "text",
-            "value": "Default"
-          }
-        ]
-      },
       {
         "type": "tableLine",
         "childs": [
           {
-            "type": "tableCell",
+            "type": "tableItem",
             "childs": [
               {
                 "type": "text",
@@ -56,7 +37,7 @@
             ]
           },
           {
-            "type": "tableCell",
+            "type": "tableItem",
             "childs": [
               {
                 "type": "text",
@@ -65,7 +46,7 @@
             ]
           },
           {
-            "type": "tableCell",
+            "type": "tableItem",
             "childs": [
               {
                 "type": "text",
@@ -74,7 +55,7 @@
             ]
           },
           {
-            "type": "tableCell",
+            "type": "tableItem",
             "childs": [
               {
                 "type": "text",
@@ -88,7 +69,7 @@
         "type": "tableLine",
         "childs": [
           {
-            "type": "tableCell",
+            "type": "tableItem",
             "childs": [
               {
                 "type": "text",
@@ -97,7 +78,7 @@
             ]
           },
           {
-            "type": "tableCell",
+            "type": "tableItem",
             "childs": [
               {
                 "type": "text",
@@ -106,7 +87,7 @@
             ]
           },
           {
-            "type": "tableCell",
+            "type": "tableItem",
             "childs": [
               {
                 "type": "text",
@@ -115,7 +96,7 @@
             ]
           },
           {
-            "type": "tableCell",
+            "type": "tableItem",
             "childs": [
               {
                 "type": "text",
