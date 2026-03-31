@@ -1,24 +1,33 @@
 [
   {
     "type": "table",
-    "tableHead": [
+    "headers": [],
+    "childs": [
       {
-        "type": "text",
-        "value": "Header 1",
-        "align": "left"
+        "type": "tableHeader",
+        "align": "left",
+        "childs": [
+          {
+            "type": "text",
+            "value": "Header 1"
+          }
+        ]
       },
       {
-        "type": "text",
-        "value": "Header 2",
-        "align": "left"
-      }
-    ],
-    "childs": [
+        "type": "tableHeader",
+        "align": "left",
+        "childs": [
+          {
+            "type": "text",
+            "value": "Header 2"
+          }
+        ]
+      },
       {
         "type": "tableLine",
         "childs": [
           {
-            "type": "tableItem",
+            "type": "tableCell",
             "childs": [
               {
                 "type": "text",
@@ -27,7 +36,7 @@
             ]
           },
           {
-            "type": "tableItem",
+            "type": "tableCell",
             "childs": [
               {
                 "type": "text",
